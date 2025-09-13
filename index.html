@@ -2,36 +2,189 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Notes — Vibrant Blog</title>
-  <meta name="description" content="Quick, colorful notes on AI—news, tips, tutorials." />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="assets/favicon.svg" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your AIverse</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c3aed;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,var(--bg),#071028 120%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .site{
+      width:100%;
+      max-width:1100px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo{
+      width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:18px;box-shadow:0 6px 18px rgba(124,58,237,0.18);
+    }
+    h1{margin:0;font-size:20px;letter-spacing:0.2px}
+    p.lead{margin:0;color:var(--muted)}
+
+    /* About section centered */
+    .about-wrap{
+      display:flex;align-items:center;justify-content:center;margin:18px 0 36px;
+    }
+    .about{
+      max-width:820px;text-align:center;padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(6px);box-shadow:0 6px 24px rgba(2,6,23,0.6);
+    }
+    .about h2{margin:0 0 8px}
+    .about p{margin:0;color:var(--muted)}
+
+    /* Grid of tiles */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
+      align-items:start;
+    }
+    .tile{
+      background:linear-gradient(180deg,var(--card), rgba(10,14,22,0.6));
+      border-radius:14px;padding:18px;min-height:160px;position:relative;overflow:hidden;
+      transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease, border-color .28s ease;
+      border:1px solid rgba(255,255,255,0.03);
+      cursor:pointer;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;
+    }
+    .tile:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 20px 40px rgba(2,6,23,0.6), 0 4px 18px rgba(124,58,237,0.12);border-color: rgba(124,58,237,0.22)}
+    .tile .meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+    .tile h3{margin:0;font-size:16px}
+    .tile p{margin:0;color:var(--muted);font-size:14px;flex:1}
+
+    /* small tag */
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:var(--glass);display:inline-block}
+
+    footer{margin-top:36px;text-align:center;color:var(--muted);font-size:13px}
+
+    @media (max-width:560px){
+      .logo{width:44px;height:44px}
+      header{flex-direction:column;align-items:flex-start}
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <h1>🤖 AI Notes</h1>
-    <p class="tagline">Short posts on AI trends, tools & tutorials</p>
-    <input id="search" class="search" placeholder="Search posts…" />
-  </header>
-  <main class="container">
-    <section id="posts" class="post-list">
-      <article class="post-card" style="--accent-color:#6a5acd;">
-        <h2><a href="post.html">Welcome to AI Notes</a></h2>
-        <p class="meta">August 14, 2025 • 2 min read</p>
-        <p>Discover short, useful notes about AI tools, trends, and tutorials.</p>
-      </article>
-      <article class="post-card" style="--accent-color:#ff7f50;">
-        <h2><a href="post.html">Getting Started with AI</a></h2>
-        <p class="meta">August 15, 2025 • 3 min read</p>
-        <p>A quick start guide to understanding and using AI in your projects.</p>
-      </article>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <div class="logo">AI</div>
+        <div>
+          <h1 id="site-name">AIverse</h1>
+          <p class="lead">Ideas, experiments, and tutorials on AI</p>
+        </div>
+      </div>
+      <nav aria-label="primary-nav">
+        <a href="#about" style="color:var(--muted);text-decoration:none;margin-right:12px">About</a>
+        <a href="#posts" style="color:var(--muted);text-decoration:none">Articles</a>
+      </nav>
+    </header>
+
+    <div class="about-wrap" id="about">
+      <section class="about">
+        <h2>About this site</h2>
+        <p>This is a simple, fast static site for publishing short AI articles. Latest posts appear below — click any tile to open the full article.</p>
+      </section>
+    </div>
+
+    <section id="posts">
+      <h2 style="margin:0 0 12px">Latest articles</h2>
+      <div class="grid" id="posts-grid">
+        <!-- tiles inserted here by JS -->
+      </div>
     </section>
-  </main>
-  <footer class="site-footer">
-    <p>© <span id="year"></span> AI Notes • Built for Netlify</p>
-  </footer>
-  <script type="module" src="assets/home.js"></script>
+
+    <footer>Made with ❤️ • Put your author name here</footer>
+  </div>
+
+  <script>
+    /*
+      Two ways to supply posts data:
+      1) Create a file posts.json at the root with an array of posts (recommended for many posts). Example posts.json:
+         [
+           {"title":"My Article","excerpt":"Short blurb","url":"/posts/my-article.html","date":"2025-09-10","tags":["AI","tutorial"]},
+           ...
+         ]
+      2) If posts.json is not found, the script uses the inline `fallbackPosts` array below — update it manually.
+    */
+
+    const fallbackPosts = [
+      {title:'Deploying small AI models', excerpt:'How to deploy lightweight models to Netlify and Vercel', url:'/posts/deploying-small-ai-models.html', date:'2025-09-01', tags:['deployment','tutorial']},
+      {title:'Understanding logistic regression', excerpt:'A gentle, visual introduction to logistic regression', url:'/posts/logistic-regression.html', date:'2025-08-11', tags:['ml','basics']},
+      {title:'Prompt engineering tips', excerpt:'10 practical prompt patterns for GPT-style models', url:'/posts/prompt-engineering.html', date:'2025-07-22', tags:['prompting']}
+    ];
+
+    async function loadPosts(){
+      let posts = fallbackPosts;
+      try{
+        const res = await fetch('/posts.json');
+        if(res.ok){
+          posts = await res.json();
+        } else {
+          // no posts.json — fallback
+        }
+      }catch(e){
+        // network error or no file — use fallback
+      }
+
+      // sort by date desc (ISO strings expected)
+      posts.sort((a,b)=> (b.date||'') .localeCompare(a.date||''));
+
+      const grid = document.getElementById('posts-grid');
+      grid.innerHTML = '';
+
+      posts.forEach(post=>{
+        const a = document.createElement('a');
+        a.className = 'tile';
+        a.href = post.url || '#';
+        a.setAttribute('aria-label', post.title);
+
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = (post.tags && post.tags[0]) || 'Article';
+        const date = document.createElement('div');
+        date.textContent = post.date ? new Date(post.date).toLocaleDateString() : '';
+        meta.appendChild(tag); meta.appendChild(date);
+
+        const h3 = document.createElement('h3');
+        h3.textContent = post.title;
+        const p = document.createElement('p');
+        p.textContent = post.excerpt || '';
+
+        a.appendChild(meta);
+        a.appendChild(h3);
+        a.appendChild(p);
+
+        // subtle hover pop shadow handled by CSS
+        grid.appendChild(a);
+      });
+    }
+
+    // run
+    loadPosts();
+  </script>
 </body>
 </html>
